@@ -26,8 +26,7 @@ def triangle(a, b, c)
 
   return :isosceles if a == b || a == c || b == c
 
-  return :scalene if a != b && a != c && b != c
-
+  :scalene
 end
 
 # Error class used in part 2.  No need to change this code.
