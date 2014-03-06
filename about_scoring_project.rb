@@ -33,11 +33,14 @@ def score(dice)
   return 0 if dice.length == 0
 
   score = 0
+
+  # create 6-element array containing the count of die rolls that came up 1-6
   counts = []  
   (1..6).each do |i|
     counts << dice.count { |x| x == i }
   end
 
+  # test for 1s
   if counts[0] < 3
     score += counts[0] * 100
   elsif counts[0] == 3
@@ -47,6 +50,7 @@ def score(dice)
     score += (counts[0] - 3) * 100
   end
 
+  # test the rest, with special handling for 5s
   (1..5).each do |i|
     if counts[i] == 3
       score += (i+1) * 100
