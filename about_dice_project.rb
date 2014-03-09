@@ -6,6 +6,21 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 #   code ...
 # end
 
+class DiceSet
+  attr_reader :values
+
+  def initialize
+    @values = []
+  end
+
+  def roll(num_dice)
+    @values = []
+    num_dice.times do
+      values << 1 + rand(6)
+    end
+  end
+end
+
 class AboutDiceProject < Neo::Koan
   def test_can_create_a_dice_set
     dice = DiceSet.new
@@ -48,6 +63,13 @@ class AboutDiceProject < Neo::Koan
     # If the rolls are random, then it is possible (although not
     # likely) that two consecutive rolls are equal.  What would be a
     # better way to test this?
+
+    # The problem with this test is that the sample size is only 1
+    # Perhaps a better way to test this would be to create a sufficiently large
+    # sample size, say ten thousand rolls or more and examine the statistical distribution.
+    # But at that point we are no longer unit testing the dice roll function, but instead
+    # the (P)RNG built into Ruby.
+
   end
 
   def test_you_can_roll_different_numbers_of_dice
